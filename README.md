@@ -1,4 +1,4 @@
-# E-connect
+# Project 3 - E-connect
 
 Author: Chun-Wei Tseng, Kuan-Tsa Chen      
 
@@ -7,6 +7,8 @@ Link to Class: https://johnguerra.co/classes/webDevelopment_fall_2022/
 Link to Home Page:        
 
 Design Document: https://docs.google.com/document/d/1UC7R8Ar2xmEfruLl-PssaVnoV53z7722ZwxZbKujE9c/edit#       
+
+Video Demonstration:          
 
 A web application allowing users to build professional connections.
 
