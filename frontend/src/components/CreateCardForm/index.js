@@ -30,7 +30,6 @@ const CreateCardForm = () => {
 
         <div className="form-group">
           <label for="exampleFormControlFile1">Example file input</label>
-          {/* <hr></hr> */}
           <input
             type="file"
             className="form-control-file"
