@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import createError from "http-errors";
 import express from "express";
 import path, { dirname } from "path";
@@ -11,18 +10,7 @@ import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-=======
-import  createError  from "http-errors";
-import express from "express";
-import path from "path";
-import cookieParser from "cookie-parser";
-import logger from "morgan";
-import session from "express-session";
 
-import router from "./routes/index.js";
-// import usersRouter from "./routes/users.js";
-
->>>>>>> c4d5b40f83c399bb1932ff3b7f0cb1255a244f92
 const app = express();
 
 // view engine setup
