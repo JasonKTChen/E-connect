@@ -8,7 +8,7 @@ import session from "express-session";
 import router from "./routes/index.js";
 // import usersRouter from "./routes/users.js";
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
