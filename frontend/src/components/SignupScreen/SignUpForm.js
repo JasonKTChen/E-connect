@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import './signup.css';
+import React, { useState } from "react";
+import "./signup.css";
 
 function SignUpForm() {
   const [user, setUser] = useState({});
+
+  function confirmPassword() {}
+
   return (
     <>
-      <form>
+      <form id="signup-form" action="/register" method="post">
         <div className="form-group">
           <label for="signUpName">Name:</label>
           <input
@@ -36,6 +39,7 @@ function SignUpForm() {
         <div className="form-group">
           <label for="confirmPassword">Please re-enter your password:</label>
           <input
+            onChange={confirmPassword}
             type="text"
             className="form-control"
             id="confirmPassword"
