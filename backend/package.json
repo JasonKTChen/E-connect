@@ -21,7 +21,10 @@
   "devDependencies": {
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.10",
+    "install": "^0.13.0",
+    "npm": "^9.1.1",
     "prettier": "^2.7.1"
   },
   "main": "app.js",
