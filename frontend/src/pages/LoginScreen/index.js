@@ -1,8 +1,8 @@
-import React from 'react';
-import Navigation from '../Navigation';
-import LoginForm from './LoginForm';
-import Footer from '../Footer';
-import './login.css';
+import React from "react";
+import Navigation from "../../components/Navigation";
+import LoginForm from "./LoginForm";
+import Footer from "../../components/Footer";
+import "./login.css";
 
 const LoginScreen = () => {
   return (

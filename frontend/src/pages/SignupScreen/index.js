@@ -1,7 +1,7 @@
 import React from "react";
-import Navigation from "../Navigation";
+import Navigation from "../../components/Navigation";
 import SignUpForm from "./SignUpForm";
-import Footer from "../Footer";
+import Footer from "../../components/Footer";
 import "./signup.css";
 
 const SignupScreen = () => {
