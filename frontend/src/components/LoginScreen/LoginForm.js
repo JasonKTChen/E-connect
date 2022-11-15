@@ -3,9 +3,12 @@ import "./login.css";
 
 function LoginForm() {
   // const [user, setUser] = useState({});
+
+  function handleClick() {}
+
   return (
     <>
-      <form>
+      <form id="login-form" action="/login" method="post">
         <div className="form-group">
           <label for="loginName">Name:</label>
           <input
@@ -24,7 +27,7 @@ function LoginForm() {
             placeholder="Enter Password"
           ></input>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button onClick={handleClick} className="btn btn-primary">
           Login
         </button>
       </form>
