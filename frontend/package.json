@@ -38,5 +38,11 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"http://localhost:3001"
+  "proxy": {
+    "/api": {
+      "target": "http://0.0.0.0:3001",
+      "secure": false
+    }
+  }
 }
+

@@ -25,6 +25,11 @@ const Navigation = () => {
               <li className="nav-item">
                 <Link to="/search" className="nav-link">
                   Search
+                  <img
+                    className="search-icon"
+                    src="images/search-icon.png"
+                    alt="search-icon"
+                  />
                 </Link>
               </li>
               <li className="nav-item">

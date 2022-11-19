@@ -15,6 +15,12 @@ const MyCards = () => {
         <div className="col-sm-3">
           <Card />
         </div>
+        <div className="col-sm-3">
+          <Card />
+        </div>
+        <div className="col-sm-3">
+          <Card />
+        </div>
       </div>
     </>
   );
