@@ -29,7 +29,7 @@ const SearchScreen = () => {
         </div>
         <div className="col-10 pt-5 search-bar">
           <div className="search-input m-5">
-            <input type="text" value="" placeholder="Search Cards..."></input>
+            <input type="text" placeholder="Search Cards..."></input>
             <button className="search-button mx-3">Search</button>
           </div>
           <div className="search-result px-5">

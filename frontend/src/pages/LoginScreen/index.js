@@ -8,9 +8,7 @@ const LoginScreen = () => {
   return (
     <>
       <Navigation />
-      <div className="login-content">
-        <h1>Wellcome to E-Connect</h1>
-        <h2>Login</h2>
+      <div className="login-screen">
         <LoginForm />
       </div>
       <Footer />

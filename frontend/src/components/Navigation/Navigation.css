@@ -17,6 +17,8 @@
 
 .submenu {
     width: 100%;
+    background-color: #0093E9;
+    background-image: linear-gradient(90deg, #0093E9 0%, #49b6d6 100%);
 }
 
 .container-fluid {
@@ -31,6 +33,10 @@
 .nav-item {
     margin: 0 auto 0 1rem;
     font-size: 1.2rem;
+}
+
+.nav-link {
+    color: rgb(255, 255, 255);
 }
 
 .search-icon {

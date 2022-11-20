@@ -41,6 +41,7 @@
     font-weight: 300;
     color: black;
     transition: width 0.4s linear;
+    z-index: index 100;
 }
 
 
