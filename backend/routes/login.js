@@ -1,89 +1,21 @@
-import { MongoClient } from "mongodb";
-import dotenv from "dotenv";
-dotenv.config({ path: "./config/config.env" });
-require("dotenv").config();
-const DB_USER = process.env.MY_DB_USERNAME;
-const DB_PASSWORD = process.env.MY_DB_PASSWORD;
-function MyMongoDB() {
-  const myDB = {};
-  const url = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.g3bcu3h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-  const DB_NAME = "businessCardDB";
-  const USER_COLLECTION = "users";
+//Chun-Wei Tseng
 
-  //Chun-Wei Tseng
-  myDB.authenticate = async (user) => {
-    let client;
+import express from "express";
+import myDB from "../db/userDB";
+const loginrouter = express.Router();
 
-    try {
-      client = new MongoClient(url);
-      client.connect();
-      const db = client.db(DB_NAME);
-      const usersCol = db.collection(USER_COLLECTION);
-      console.log("searching for", user);
-      const res = await usersCol.findOne({ username: user.loginName });
-      console.log("res", res);
-
-      if (res) {
-        if (res.password === user.loginPassword) {
-          console.log("true");
-          return true;
-        }
-      }
-      return false;
-    } finally {
-      console.log("Closing Connection");
-      client.close();
+loginrouter.post("/login", async (req, res) => {
+    console.log("Login in progress");
+    const user = req.body;
+    console.log(user);
+    const mongoResponse = await myDB.authenticate(user);
+    if (mongoResponse === true) {
+        req.session.user = user.loginName;
     }
-  };
+    res.json({ user: user.loginName, isLoggedIn: mongoResponse });
+});
 
-  myDB.createUser = async (user) => {
-    let client = new MongoClient(url);
-    client.connect();
-    try {
-      client.connect();
-      const db = client.db(DB_NAME);
-      const usersCol = db.collection(USER_COLLECTION);
-      console.log("creating user", user);
-      const res = await usersCol.findOne({
-        $or: [
-          { name: user.name },
-          { username: user.username },
-          { email: user.email },
-        ],
-      });
-
-      console.log("return-------------", res);
-      if (res) {
-        console.log("User Already Exist");
-        return true;
-      }
-      usersCol.insertOne(user);
-      console.log("User Added!");
-      console.log("Insert Complete:", user);
-      const d = await usersCol.findOne({ name: user.name });
-      console.log("check if user added", d);
-      return false;
-    } finally {
-      console.log("Closing Connection");
-      client.close();
-    }
-  };
-
-  myDB.getUser = async (_email) => {
-    let client;
-    try {
-      client = new MongoClient(url);
-      client.connect();
-      const db = client.db(DB_NAME);
-      const usersCol = db.collection(USER_COLLECTION);
-      const res = await usersCol.findOne({ email: _email });
-      return res;
-    } finally {
-      client.close();
-    }
-  };
-
-  return myDB;
-}
-
-export default MyMongoDB();
+loginrouter.get("/getusers", function (req, res) {
+    console.log("getusers get session", req.session.user);
+    res.json({ user: req.session.user });
+});
