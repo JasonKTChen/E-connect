@@ -1,3 +1,4 @@
+import { prototype } from "npm/lib/npm";
 import "./Card.css";
 
 const Card = ({ currentUser }) => {
@@ -13,18 +14,15 @@ const Card = ({ currentUser }) => {
     profileImg: "/images/profile-icon1.png",
   };
   const user = currentUser === undefined ? defaultUser : currentUser;
-
+  console.log("currentuser", currentUser);
   return (
     <>
       <div className="card text-center">
-        {/* <span className="card-header"> */}
         <img
           src={user.profileImg}
           className="img img-responsive card-icon"
           alt="card-icon"
         />
-
-        {/* </span> */}
 
         <div className="card-content">
           <div className="card-name">
@@ -36,19 +34,19 @@ const Card = ({ currentUser }) => {
             <div className="col-xs-4">
               <div className="card-overview">
                 <p>PHONE</p>
-                <h4>{user.phone}</h4>
+                <h6>{user.phone}</h6>
               </div>
             </div>
             <div className="col-xs-4">
               <div className="card-overview">
                 <p>JOB</p>
-                <h4>{user.job}</h4>
+                <h6>{user.job}</h6>
               </div>
             </div>
             <div className="col-xs-4">
               <div className="card-overview">
                 <p>LOCATION</p>
-                <h4>{user.location}</h4>
+                <h6>{user.location}</h6>
               </div>
             </div>
             <div className="col-xs-4 buttons-container">
@@ -66,6 +64,17 @@ const Card = ({ currentUser }) => {
       </div>
     </>
   );
+};
+
+Card.protoType = {
+  firstName: prototype.string.isRequired,
+  lastName: prototype.string.isRequired,
+  email: prototype.string.isRequired,
+  intro: prototype.string.isRequired,
+  phone: prototype.string.isRequired,
+  job: prototype.string.isRequired,
+  location: prototype.string.isRequired,
+  profileImg: prototype.string.isRequired,
 };
 
 export default Card;

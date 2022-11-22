@@ -1,6 +1,6 @@
 import Card from "../Card";
 import "./CreateCardForm.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const CreateCardForm = () => {
   const [selectedImage, setSelectedImage] = useState(
@@ -29,14 +29,38 @@ const CreateCardForm = () => {
     job: job,
     location: location,
   };
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    const user = {};
+    user.firstName = event.target.firstName.value;
+    user.lastName = event.target.lastName.value;
+    user.email = event.target.email.value;
+    user.intro = event.target.intro.value;
+    user.phone = event.target.phone.value;
+    user.job = event.target.job.value;
+    user.location = event.target.location.value;
+    user.image = event.target.image.value;
+    // do stuff
+    console.log("User:", user);
+    fetch("/createCard", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    });
+  };
+
   return (
     <>
-      <div className="row">
+      <div className="row py-3 mx-5">
         <div className="col">
           <Card currentUser={currentUser} />
         </div>
         <div className="col">
-          <form className="createCard mx-5 my-4 px-3">
+          <form
+            className="createCard mx-5 my-4 px-3"
+            onSubmit={onSubmitHandler}
+          >
             <h3>Create new card</h3>
             <div className="form-group">
               <label for="firstName">FirstName</label>
@@ -45,7 +69,8 @@ const CreateCardForm = () => {
                 className="form-control"
                 id="firstName"
                 placeholder="FirstName"
-                required="true"
+                required={true}
+                name="firstName"
                 onChange={(event) => setFirstName(event.target.value)}
               ></input>
             </div>
@@ -56,7 +81,8 @@ const CreateCardForm = () => {
                 className="form-control"
                 id="lastName"
                 placeholder="LastName"
-                required="true"
+                required={true}
+                name="lastName"
                 onChange={(event) => setLastName(event.target.value)}
               ></input>
             </div>
@@ -68,7 +94,8 @@ const CreateCardForm = () => {
                 id="email"
                 aria-describedby="emailHelp"
                 placeholder="email"
-                required="true"
+                required={true}
+                name="email"
                 onChange={(event) => setEmail(event.target.value)}
               ></input>
               <small id="emailHelp" className="form-text text-muted">
@@ -82,7 +109,8 @@ const CreateCardForm = () => {
                 className="form-control"
                 id="intro"
                 placeholder="Intro"
-                required="true"
+                required={true}
+                name="intro"
                 onChange={(event) => setIntro(event.target.value)}
               ></input>
             </div>
@@ -93,7 +121,8 @@ const CreateCardForm = () => {
                 className="form-control"
                 id="phone"
                 placeholder="Phone"
-                required="true"
+                required={true}
+                name="phone"
                 onChange={(event) => setPhone(event.target.value)}
               ></input>
             </div>
@@ -104,7 +133,8 @@ const CreateCardForm = () => {
                 className="form-control"
                 id="job"
                 placeholder="Job"
-                required="true"
+                required={true}
+                name="job"
                 onChange={(event) => setJob(event.target.value)}
               ></input>
             </div>
@@ -115,7 +145,8 @@ const CreateCardForm = () => {
                 className="form-control"
                 id="location"
                 placeholder="Location"
-                required="true"
+                required={true}
+                name="location"
                 onChange={(event) => setLocation(event.target.value)}
               ></input>
             </div>
@@ -126,6 +157,7 @@ const CreateCardForm = () => {
                 accept="image/*"
                 className="form-control-file"
                 id="profieImg"
+                name="image"
                 onChange={(event) => {
                   // console.log(event.target.files[0]);
                   setSelectedImage(event.target.files[0]);

@@ -2,6 +2,10 @@
     width: 500px;
 }
 
+.col {
+    width: 100%;
+}
+
 .btn-primary {
     background-color: #18abd8;
     border: none;
