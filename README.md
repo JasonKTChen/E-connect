@@ -60,7 +60,8 @@ This website that provides functionality:
 We used AWS as our cloud service provider, and used EC2 instances as our servers for both backend and frontend. We also set up load balancers for autoscaling, which will spin up more servers if CPU capacity is more than 75%.
 For more complete information about the service architecture and instructions, please refer to this [google-doc](https://docs.google.com/document/d/14JMFLfPNHAKBt3-jvD2Vnw_3QoCJuXeDr8CZL8AVm4c/edit?usp=sharing)
 
-
+### Screen Shots:   
+https://github.com/JasonKTChen/E-connect<img width="1440" alt="Screen Shot 2022-11-22 at 11 11 39 AM" src="https://user-images.githubusercontent.com/63666127/203412584-c0ad9473-e7b2-42eb-91bc-c6fccf424d3d.png">
 
 
 

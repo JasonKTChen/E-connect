@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import "./signup.css";
 
 function SignUpForm() {
-    const [name, setName] = useState("");
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordTwo, setPasswordTwo] = useState("");
@@ -15,8 +15,8 @@ function SignUpForm() {
     }
 
     function handdleSetPasswordTwo(e) {
-        setPasswordTwo(e.target.value);
         console.log(`password2 is equal to`, passwordTwo);
+        setPasswordTwo(e.target.value);
         if (password === passwordTwo) {
             setIsConfirmPassword(true);
         } else {
@@ -24,34 +24,52 @@ function SignUpForm() {
         }
     }
 
-    // const handleRegister = async (evt)=>{
-    //   evt.preventDefault();
-    //   try{
-    //     await registerUser();
-
-    //   }
-    // }
+    async function handleRegister(e) {
+        e.preventDefault();
+        if (password !== passwordTwo) {
+            console.log("Passwords are different, Please reenter");
+        } else {
+            console.log("Trying to register for user");
+            let user = {};
+            user.username = username;
+            user.email = email;
+            user.password = password;
+            user.firstname = "";
+            user.lastname = "";
+            user.phone = "";
+            user.addressLOne = "";
+            user.addressLTwo = "";
+            user.postcode = "";
+            user.addressState = "";
+            user.country = "";
+            user.education = "";
+            console.log("User", user);
+            await fetch("/signup", {
+                method: "post",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(user),
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
+    }
 
     return (
         <>
-            <form
-                id="signup-form"
-                action="/signup"
-                method="post"
-                // onSubmit={handleRegister}
-            >
+            <form id="signup-form" onSubmit={handleRegister}>
                 <h2 id="register-title">Sign Up</h2>
                 <div className="form-group">
                     <label className="signup-input-label" for="signUpName">
-                        Name:
+                        Username:
                     </label>
                     <input
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={(e) => setUsername(e.target.value)}
                         type="text"
                         className="form-control signup-input"
                         id="signUpName"
                         name="signUpName"
-                        placeholder="Enter Name"
+                        placeholder="Enter Username"
+                        value={username}
                         required
                     ></input>
                 </div>
@@ -66,6 +84,7 @@ function SignUpForm() {
                         id="signUpEmail"
                         name="signUpEmail"
                         placeholder="Enter Email"
+                        value={email}
                         required
                     ></input>
                 </div>
@@ -80,6 +99,7 @@ function SignUpForm() {
                         id="signUpPassword"
                         name="signUpPassword"
                         placeholder="Enter Password"
+                        value={password}
                         required
                     ></input>
                 </div>
@@ -99,6 +119,7 @@ function SignUpForm() {
                         id="confirmPassword"
                         name="confirmPassword"
                         placeholder="Confirm Password"
+                        value={passwordTwo}
                         required
                     ></input>
                 </div>
@@ -113,5 +134,7 @@ function SignUpForm() {
         </>
     );
 }
+
+SignUpForm.propTypes = {};
 
 export default SignUpForm;
