@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import "./Cardlist.css";
 import Card from "../Card";
 
@@ -64,7 +65,7 @@ const Cardlist = ({ status }) => {
       })
       .catch(() => {
         console.log("get user fail!!!!");
-        setUser(null);
+        setUser({});
       });
   };
 
@@ -83,11 +84,12 @@ const Cardlist = ({ status }) => {
         });
     } else {
       console.log("use default users");
-      // setCards(defaultUser);
+      setCards(defaultUser);
     }
   };
   useEffect(getProfile, []);
   useEffect(populateCards, [user, status]);
+
   return (
     <>
       <div className="row py-3 mx-5">
@@ -97,7 +99,7 @@ const Cardlist = ({ status }) => {
           <h3 className="p-3">Collections</h3>
         )}
 
-        {cards !== undefined ? (
+        {cards !== undefined && cards.length > 0 ? (
           cards.map((items) => (
             <div className="col-sm-3" key={items.id}>
               <Card currentUser={items} />
@@ -111,5 +113,7 @@ const Cardlist = ({ status }) => {
     </>
   );
 };
-
+Cardlist.propTypes = {
+  status: PropTypes.string.isRequired,
+};
 export default Cardlist;

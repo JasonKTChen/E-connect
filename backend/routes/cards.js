@@ -7,12 +7,11 @@ const cardrouter = express.Router();
 // create
 cardrouter.post("/createMyCard", async (req, res) => {
   const card = req.body;
-  card.username = "jimmy";
-  // console.log("card:", card);
-  // req.session.user = "jason";
-  // console.log("current user in createcard", req.session.user);
+  card.username = req.session.user;
+  console.log("createmycard session user", req.session.user);
+  console.log("card:", card);
 
-  const ret = await myDB.createCard("jimmy", card);
+  const ret = await myDB.createCard(card.username, card);
   if (ret) {
     res.send("successful");
   } else {
@@ -22,8 +21,8 @@ cardrouter.post("/createMyCard", async (req, res) => {
 
 // read
 cardrouter.get("/getMyCards", async (req, res) => {
-  // const current = req.session.user;
-  const current = "jimmy";
+  console.log("getmycard session user", req.session.user);
+  const current = req.session.user;
   const flag = "mine";
   if (current !== undefined) {
     const ret = await myDB.fetchingCards(current, flag);
@@ -38,8 +37,7 @@ cardrouter.get("/getMyCards", async (req, res) => {
 });
 
 cardrouter.get("/getOtherCards", async (req, res) => {
-  // const current = req.session.user;
-  const current = "jimmy";
+  const current = req.session.user;
   const flag = "other";
   if (current !== undefined) {
     const ret = await myDB.fetchingCards(current, flag);
@@ -49,9 +47,17 @@ cardrouter.get("/getOtherCards", async (req, res) => {
   }
 });
 
+cardrouter.get("/getPublicCards", async (req, res) => {
+  const ret = await myDB.fetchingPublicCards();
+  if (ret) {
+    res.send(ret);
+  } else {
+    res.send({});
+  }
+});
+
 // update
 cardrouter.post("/updateCard", async (req, res) => {
-  // const currentUser = req.session.user;
   const currentUser = "jimmy";
   const card = req.body;
 
@@ -73,7 +79,6 @@ cardrouter.post("/updateCard", async (req, res) => {
 cardrouter.post("/deleteCard", async (req, res) => {
   const id = req.body.id;
   console.log("id:", id);
-  // const currentUser = req.session.user;
   const currentUser = "jimmy";
 
   if (currentUser !== undefined) {

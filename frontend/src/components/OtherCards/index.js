@@ -23,5 +23,5 @@ const OtherCards = () => {
     </>
   );
 };
-
+OtherCards.propTypes = {};
 export default OtherCards;

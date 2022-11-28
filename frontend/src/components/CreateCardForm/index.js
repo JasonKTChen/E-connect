@@ -1,6 +1,6 @@
 import Card from "../Card";
 import "./CreateCardForm.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const CreateCardForm = () => {
   const [selectedImage, setSelectedImage] = useState(
@@ -159,7 +159,6 @@ const CreateCardForm = () => {
                 id="profieImg"
                 name="image"
                 onChange={(event) => {
-                  // console.log(event.target.files[0]);
                   setSelectedImage(event.target.files[0]);
                 }}
               ></input>
@@ -173,5 +172,5 @@ const CreateCardForm = () => {
     </>
   );
 };
-
+CreateCardForm.propTypes = {};
 export default CreateCardForm;

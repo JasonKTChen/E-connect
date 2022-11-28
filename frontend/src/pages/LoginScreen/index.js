@@ -16,4 +16,5 @@ const LoginScreen = () => {
   );
 };
 
+LoginScreen.propTypes = {};
 export default LoginScreen;

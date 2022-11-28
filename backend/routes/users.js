@@ -1,48 +1,39 @@
+// Chun-Wei Tseng
+
 import express from "express";
-import userDB from "../db/userDB.js";
+import UserDB from "../db/userDB.js";
 const loginrouter = express.Router();
 
-/* GET users listing. */
 loginrouter.post("/login", async (req, res) => {
-  const user = req.body;
-  console.log(user);
-  const ret = await userDB.authenticate(user);
-  // if (ret === true) {
-  //   req.session.user = user.loginName;
-  // }
-  // res.json({ user: user.loginName, isLoggedIn: ret });
-});
-
-loginrouter.get("/login", (req, res) => {
-  res.redirect("/login.html");
-});
-
-loginrouter.get("/register", (req, res) => {
-  res.redirect("/login.html");
-});
-
-loginrouter.post("/signup", async (req, res) => {
-  const user = req.body;
-  const ret = await userDB.createUser({
-    name: user.registerName,
-    username: user.registerUsername,
-    email: user.registerEmail,
-    password: user.registerPassword,
-  });
-  console.log("ret", ret);
-  res.json({ isRegistered: ret });
-  // console.log('')
-  // return ret;
+  try {
+    const user = req.body;
+    console.log(user);
+    // password -> encrypt the password in here -> store all the thing to mongodb
+    const ret = await UserDB.authenticate(user);
+    if (ret) {
+      req.session.user = user.username;
+      console.log("login session user", req.session.user);
+      // res.redirect("/");
+    }
+    res.json({ user: user.username, isLoggedIn: ret });
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 loginrouter.get("/getusers", function (req, res) {
-  console.log("getusers get session", req.session.user);
-  res.json({ user: req.session.user });
+  // req.session.user = "jimmy";
+  console.log("getusers session user", req.session.user);
+  if (req.session.user !== undefined) {
+    res.json({ user: req.session.user });
+  } else {
+    res.json({});
+  }
 });
 
 loginrouter.get("/logout", function (req, res) {
   req.session.user = undefined;
-  console.log("logout session", req.session.user);
+  console.log("logout session user", req.session.user);
   if (req.session.user === undefined) {
     res.json({ isLoggedOut: true });
   } else {

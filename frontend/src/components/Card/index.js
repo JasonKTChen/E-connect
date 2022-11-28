@@ -35,6 +35,8 @@ const Card = ({ currentUser }) => {
       body: JSON.stringify(user),
     });
   };
+
+  const [show, setShow] = useState(true);
   const deleteCard = () => {
     let req = { id: currentUser.id };
     fetch("/deleteCard", {
@@ -42,10 +44,14 @@ const Card = ({ currentUser }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(req),
     });
+    setShow(false);
   };
   return (
     <>
-      <div className="card text-center">
+      <div
+        className="card text-center"
+        style={{ display: show ? "block" : "none" }}
+      >
         <img
           src={user.profileImg}
           className="img img-responsive card-icon"

@@ -1,7 +1,24 @@
 import "./Navigation.css";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Navigation = () => {
+  const [user, setUser] = useState({});
+
+  // check if user logged in
+  const getProfile = () => {
+    fetch("/getusers")
+      .then((res) => res.json())
+      .then((user) => {
+        console.log("get user success");
+        setUser(user);
+      })
+      .catch(() => {
+        console.log("get user fail!!!!");
+        setUser({});
+      });
+  };
+  useEffect(getProfile, []);
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark navbar-color">
@@ -42,6 +59,15 @@ const Navigation = () => {
                   Signup
                 </Link>
               </li>
+              {user !== {} ? (
+                <li className="nav-item">
+                  <Link to="/profile" className="nav-link">
+                    Profile
+                  </Link>
+                </li>
+              ) : (
+                ""
+              )}
             </ul>
           </div>
         </div>
@@ -49,4 +75,5 @@ const Navigation = () => {
     </>
   );
 };
+Navigation.propTypes = {};
 export default Navigation;

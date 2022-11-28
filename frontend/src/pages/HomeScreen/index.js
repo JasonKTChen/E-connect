@@ -18,5 +18,5 @@ const HomeScreen = () => {
     </>
   );
 };
-
+HomeScreen.propTypes = {};
 export default HomeScreen;

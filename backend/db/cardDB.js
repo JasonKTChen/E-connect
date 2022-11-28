@@ -10,6 +10,7 @@ function MyMongoDB() {
   const myDB = {};
   const url = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.g3bcu3h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
   const collections = "card";
+  const collectionsPub = "publiccard";
   const Equal = (obj1, obj2) => {
     Object.keys(obj1).forEach(function (key) {
       if (obj1[key] !== obj2[key]) {
@@ -27,6 +28,7 @@ function MyMongoDB() {
       const query = { username: user };
       const cardUser = await cardsCol.findOne(query);
       // if user doesn't have a card
+      // console.log("mongo card:", card);
       let newHash = 0;
       if (!cardUser) {
         await cardsCol.insertOne({
@@ -63,10 +65,30 @@ function MyMongoDB() {
       const query = { username: user };
       const cardUser = await cardsCol.findOne(query);
       const key = flag === "mine" ? "mycards" : "othercards";
+      console.log("find user in card collections", cardUser);
       if (cardUser) {
         return cardUser[`${key}`];
       }
       return {};
+    } finally {
+      await client.close();
+    }
+  };
+
+  myDB.fetchingPublicCards = async () => {
+    const client = new MongoClient(url);
+    try {
+      await client.connect();
+      const database = client.db(DB_NAME);
+
+      const cardsCol = database.collection(collectionsPub);
+      // const query = { username: user };
+      const cardUser = await cardsCol.find();
+      if (cardUser) {
+        return cardUser;
+      } else {
+        return {};
+      }
     } finally {
       await client.close();
     }
@@ -121,6 +143,7 @@ function MyMongoDB() {
       const database = client.db(DB_NAME);
       const cardsCol = database.collection(collections);
       const query = { username: currentUser };
+      console.log("current user", currentUser);
       console.log("current id", id);
 
       await cardsCol.updateOne(
