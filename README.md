@@ -14,7 +14,7 @@ A web application allowing users to build professional connections.
 
 ### Background
 
-This is a full stack web app utilizing the MERN stack. The backend runs a Express server, constructed with MVC architecture, which talks to a remote mongoDB Atlas server. The frontend runs a React.js server which communicates with the backend Express server via services (services folder) as the entry point. The mongoDB UML diagram can be found at: [UML Diagram](https://drive.google.com/file/d/1E2uUDYjA-yFQnmoD5o5SFGSfrTb9b1bv/view) User will be able to create multiple business cards for different occurrence, and choose one to be set as public so that other users can connect to them. They can add others’ business cards too as long as they also set their card to public. They can edit their own cards and manage their card collections.
+This is a full stack web app utilizing the MERN stack. The backend runs a Express server, which talks to a remote mongoDB Atlas server. The frontend runs a React.js server which communicates with the backend Express server via routes (routes folder) as the entry point. User will be able to create multiple business cards for different occurrence, and choose one to be set as public so that other users can connect to them. They can add others’ business cards too as long as they also set their card to public. They can edit their own cards and manage their card collections.
 
 ### User Stories
 
@@ -63,10 +63,31 @@ This website that provides functionality:
 - Users can delete cards from their collection.
 
 ### Deploy Architecture
+<<<<<<< HEAD
 
 We used AWS as our cloud service provider, and used EC2 instances as our servers for both backend and frontend. We also set up load balancers for autoscaling, which will spin up more servers if CPU capacity is more than 75%.
 For more complete information about the service architecture and instructions, please refer to this [google-doc](https://docs.google.com/document/d/14JMFLfPNHAKBt3-jvD2Vnw_3QoCJuXeDr8CZL8AVm4c/edit?usp=sharing)
 
 ### Screen Shots:
+=======
+We used AWS as our cloud service provider.    
+
+
+### Screen Shots:   
+
+<img width="1440" alt="Screen Shot 2022-11-22 at 11 11 39 AM" src="https://user-images.githubusercontent.com/63666127/203412584-c0ad9473-e7b2-42eb-91bc-c6fccf424d3d.png">
+
+![Screen Shot 2022-11-28 at 12 40 58 AM](https://user-images.githubusercontent.com/63666127/204233900-91c0f154-e652-4a31-aafa-e77812561431.png)
+
+![Screen Shot 2022-11-28 at 12 41 24 AM](https://user-images.githubusercontent.com/63666127/204234030-03b46957-7198-4d1e-9e7e-07aa40a496a2.png)
+
+![317122557_3272361193015299_187325729753169284_n](https://user-images.githubusercontent.com/63666127/204234069-1e4500f6-67c2-405b-b606-99ff685adf5f.jpg)
+
+
+
+
+
+
+>>>>>>> 8b37fcb62aac8ad090b37b6ea1eda0c7f60cb2fb
 
 https://github.com/JasonKTChen/E-connect<img width="1440" alt="Screen Shot 2022-11-22 at 11 11 39 AM" src="https://user-images.githubusercontent.com/63666127/203412584-c0ad9473-e7b2-42eb-91bc-c6fccf424d3d.png">
