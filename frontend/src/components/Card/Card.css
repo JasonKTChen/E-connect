@@ -109,3 +109,7 @@
 .card:hover .card-icon {
     transform: rotate(5deg) scale(1.1, 1.1);
 }
+
+.updateCard {
+    max-width: 250px;
+}

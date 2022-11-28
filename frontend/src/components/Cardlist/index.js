@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import "./MyCards.css";
+import "./Cardlist.css";
 import Card from "../Card";
 
-const MyCards = () => {
+const Cardlist = ({ status }) => {
   const defaultUser = [
     {
       firstName: "Jimmy",
@@ -14,7 +14,6 @@ const MyCards = () => {
       job: "Web Developer",
       location: "San Mateo, CA",
       profileImg: "/images/profile-icon1.png",
-      userName: "jimmy",
       id: "jimmy1",
     },
     {
@@ -26,7 +25,6 @@ const MyCards = () => {
       phone: "3",
       job: "3",
       location: "3",
-      userName: "jimmy",
       id: "jimmy1",
     },
     {
@@ -38,7 +36,6 @@ const MyCards = () => {
       phone: "55",
       job: "555",
       location: "555",
-      userName: "jimmy",
       id: "jimmy2",
     },
     {
@@ -50,34 +47,36 @@ const MyCards = () => {
       phone: "444",
       job: "44",
       location: "444",
-      userName: "jimmy",
       id: "jimmy3",
     },
   ];
-  const [cards, setCards] = useState(defaultUser);
+  const [cards, setCards] = useState([]);
   const [user, setUser] = useState({});
   const [isDefault, setIsDefault] = useState(true);
 
   // check if user logged in
   const getProfile = () => {
-    fetch("/getuser")
+    fetch("/getusers")
       .then((res) => res.json())
       .then((user) => {
+        console.log("get user success");
         setUser(user);
       })
       .catch(() => {
+        console.log("get user fail!!!!");
         setUser(null);
       });
   };
 
   const populateCards = () => {
     if (user !== null) {
-      fetch("/getMyCards")
+      fetch(`/get${status}Cards`)
         .then((res) => res.json())
         .then((item) => {
           console.log("fetching success");
           setCards(item);
           setIsDefault(false);
+          // console.log("current cards len", cards.legnth);
         })
         .catch(() => {
           console.log("fetching error");
@@ -88,20 +87,29 @@ const MyCards = () => {
     }
   };
   useEffect(getProfile, []);
-  useEffect(populateCards, [user]);
+  useEffect(populateCards, [user, status]);
   return (
     <>
       <div className="row py-3 mx-5">
-        <h3 className="p-3">Your Cards</h3>
-        {cards.map((items) => (
-          <div className="col-sm-3">
-            <Card currentUser={items} />
-          </div>
-        ))}
+        {status === "My" ? (
+          <h3 className="p-3">Your Cards</h3>
+        ) : (
+          <h3 className="p-3">Collections</h3>
+        )}
+
+        {cards !== undefined ? (
+          cards.map((items) => (
+            <div className="col-sm-3" key={items.id}>
+              <Card currentUser={items} />
+            </div>
+          ))
+        ) : (
+          <h3 className="p-3">You don't have any cards here!</h3>
+        )}
         {isDefault ? <h2>These are default cards</h2> : null}
       </div>
     </>
   );
 };
 
-export default MyCards;
+export default Cardlist;

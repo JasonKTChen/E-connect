@@ -1,7 +1,7 @@
 import "./HomeScreen.css";
 import Navigation from "../../components/Navigation";
-import MyCards from "../../components/MyCards";
-import OtherCards from "../../components/OtherCards";
+import Cardlist from "../../components/Cardlist";
+// import OtherCards from "../../components/OtherCards";
 import Footer from "../../components/Footer";
 import CreateCardForm from "../../components/CreateCardForm";
 import Board from "../../components/Board";
@@ -11,8 +11,8 @@ const HomeScreen = () => {
     <>
       <Navigation />
       <Board />
-      <MyCards />
-      <OtherCards />
+      <Cardlist status={"My"} />
+      <Cardlist status={"Other"} />
       <CreateCardForm />
       <Footer />
     </>

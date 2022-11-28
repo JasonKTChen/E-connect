@@ -1,4 +1,5 @@
-import { prototype } from "npm/lib/npm";
+import PropTypes from "prop-types";
+import { useState } from "react";
 import "./Card.css";
 
 const Card = ({ currentUser }) => {
@@ -13,8 +14,35 @@ const Card = ({ currentUser }) => {
     location: "San Mateo, CA",
     profileImg: "/images/profile-icon1.png",
   };
+
+  const [updateCard, setUpdateCard] = useState(false);
   const user = currentUser === undefined ? defaultUser : currentUser;
-  console.log("currentuser", currentUser);
+
+  const onSubmitUpdateCard = (event) => {
+    const user = {};
+    user.firstName = event.target.firstName.value;
+    user.lastName = event.target.lastName.value;
+    user.email = event.target.email.value;
+    user.intro = event.target.intro.value;
+    user.phone = event.target.phone.value;
+    user.job = event.target.job.value;
+    user.location = event.target.location.value;
+    user.image = event.target.image.value;
+    user.id = currentUser.id;
+    fetch("/updateCard", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    });
+  };
+  const deleteCard = () => {
+    let req = { id: currentUser.id };
+    fetch("/deleteCard", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(req),
+    });
+  };
   return (
     <>
       <div className="card text-center">
@@ -24,7 +52,10 @@ const Card = ({ currentUser }) => {
           alt="card-icon"
         />
 
-        <div className="card-content">
+        <div
+          className="card-content"
+          style={{ display: updateCard ? "none" : "block" }}
+        >
           <div className="card-name">
             {user.firstName + " " + user.lastName}
             <p>{user.email}</p>
@@ -51,15 +82,117 @@ const Card = ({ currentUser }) => {
             </div>
             <div className="col-xs-4 buttons-container">
               <span>
-                <button>
+                <button onClick={() => setUpdateCard((prev) => !prev)}>
                   <img src="/images/edit-icon2.png" alt="edit-button" />
                 </button>
-                <button>
+                <button onClick={deleteCard}>
                   <img src="/images/delete-icon.png" alt="delete-button" />
                 </button>
               </span>
             </div>
           </div>
+        </div>
+        <div
+          className="card-update-form"
+          style={{ display: updateCard ? "block" : "none" }}
+        >
+          <form className="updateCard px-1" onSubmit={onSubmitUpdateCard}>
+            <h3>Update your card</h3>
+            <div className="form-group">
+              <label for="firstName">FirstName</label>
+              <input
+                type="FirstName"
+                className="form-control"
+                id="firstName"
+                placeholder={user.firstName}
+                required={true}
+                name="firstName"
+              ></input>
+            </div>
+            <div className="form-group">
+              <label for="lastName">LastName</label>
+              <input
+                type="lastName"
+                className="form-control"
+                id="lastName"
+                placeholder={user.lastName}
+                required={true}
+                name="lastName"
+              ></input>
+            </div>
+            <div className="form-group">
+              <label for="email">Email address</label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                placeholder={user.email}
+                required={true}
+                name="email"
+              ></input>
+            </div>
+            <div className="form-group">
+              <label for="intro">Intro</label>
+              <input
+                type="text"
+                className="form-control"
+                id="intro"
+                placeholder={user.intro}
+                required={true}
+                name="intro"
+              ></input>
+            </div>
+            <div className="form-group">
+              <label for="phone">Phone</label>
+              <input
+                type="phone"
+                className="form-control"
+                id="phone"
+                placeholder={user.phone}
+                required={true}
+                name="phone"
+              ></input>
+            </div>
+            <div className="form-group">
+              <label for="job">Job</label>
+              <input
+                type="text"
+                className="form-control"
+                id="job"
+                placeholder={user.job}
+                required={true}
+                name="job"
+              ></input>
+            </div>
+            <div className="form-group">
+              <label for="location">Location</label>
+              <input
+                type="location"
+                className="form-control"
+                id="location"
+                placeholder={user.location}
+                required={true}
+                name="location"
+              ></input>
+            </div>
+            <div className="form-group">
+              <label for="profieImg">Upload your photo </label>
+              <input
+                type="file"
+                accept="image/*"
+                className="form-control-file"
+                id="profieImg"
+                name="image"
+              ></input>
+            </div>
+            <button
+              type="submit"
+              className="btn btn-primary mx-2"
+              onClick={() => setUpdateCard((prev) => !prev)}
+            >
+              update
+            </button>
+          </form>
         </div>
       </div>
     </>
@@ -67,14 +200,14 @@ const Card = ({ currentUser }) => {
 };
 
 Card.protoType = {
-  firstName: prototype.string.isRequired,
-  lastName: prototype.string.isRequired,
-  email: prototype.string.isRequired,
-  intro: prototype.string.isRequired,
-  phone: prototype.string.isRequired,
-  job: prototype.string.isRequired,
-  location: prototype.string.isRequired,
-  profileImg: prototype.string.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  intro: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  job: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  profileImg: PropTypes.string.isRequired,
 };
 
 export default Card;

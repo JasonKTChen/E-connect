@@ -30,8 +30,8 @@ const CreateCardForm = () => {
     location: location,
   };
 
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
+  const onSubmitCreateCard = (event) => {
+    // event.preventDefault();
     const user = {};
     user.firstName = event.target.firstName.value;
     user.lastName = event.target.lastName.value;
@@ -43,7 +43,7 @@ const CreateCardForm = () => {
     user.image = event.target.image.value;
     // do stuff
     console.log("User:", user);
-    fetch("/createCard", {
+    fetch("/createMyCard", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
@@ -59,7 +59,7 @@ const CreateCardForm = () => {
         <div className="col">
           <form
             className="createCard mx-5 my-4 px-3"
-            onSubmit={onSubmitHandler}
+            onSubmit={onSubmitCreateCard}
           >
             <h3>Create new card</h3>
             <div className="form-group">
