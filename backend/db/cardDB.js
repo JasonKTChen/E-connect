@@ -82,7 +82,6 @@ function MyMongoDB() {
       const database = client.db(DB_NAME);
 
       const cardsCol = database.collection(collectionsPub);
-      // const query = { username: user };
       const cardUser = await cardsCol.find();
       if (cardUser) {
         return cardUser;
