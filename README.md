@@ -14,7 +14,7 @@ A web application allowing users to build professional connections.
 
 ### Background
 
-This is a full stack web app utilizing the MERN stack. The backend runs a Express server, constructed with MVC architecture, which talks to a remote mongoDB Atlas server. The frontend runs a React.js server which communicates with the backend Express server via services (services folder) as the entry point. The mongoDB UML diagram can be found at: [UML Diagram](https://drive.google.com/file/d/1E2uUDYjA-yFQnmoD5o5SFGSfrTb9b1bv/view) User will be able to create multiple business cards for different occurrence, and choose one to be set as public so that other users can connect to them. They can add others’ business cards too as long as they also set their card to public. They can edit their own cards and manage their card collections.
+This is a full stack web app utilizing the MERN stack. The backend runs a Express server, which talks to a remote mongoDB Atlas server. The frontend runs a React.js server which communicates with the backend Express server via routes (routes folder) as the entry point. User will be able to create multiple business cards for different occurrence, and choose one to be set as public so that other users can connect to them. They can add others’ business cards too as long as they also set their card to public. They can edit their own cards and manage their card collections.
 
 ### User Stories
 
@@ -57,8 +57,8 @@ This website that provides functionality:
 
 
 ### Deploy Architecture
-We used AWS as our cloud service provider, and used EC2 instances as our servers for both backend and frontend. We also set up load balancers for autoscaling, which will spin up more servers if CPU capacity is more than 75%.
-For more complete information about the service architecture and instructions, please refer to this [google-doc](https://docs.google.com/document/d/14JMFLfPNHAKBt3-jvD2Vnw_3QoCJuXeDr8CZL8AVm4c/edit?usp=sharing)
+We used AWS as our cloud service provider.    
+
 
 ### Screen Shots:   
 https://github.com/JasonKTChen/E-connect<img width="1440" alt="Screen Shot 2022-11-22 at 11 11 39 AM" src="https://user-images.githubusercontent.com/63666127/203412584-c0ad9473-e7b2-42eb-91bc-c6fccf424d3d.png">
