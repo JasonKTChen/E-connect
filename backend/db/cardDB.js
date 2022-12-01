@@ -92,7 +92,7 @@ function MyMongoDB() {
       await client.close();
     }
   };
-
+// For the update here, is it possible that we can only update the atributes that has been changed?
   myDB.updateCard = async (currentUser, card) => {
     const client = new MongoClient(url);
     try {

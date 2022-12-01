@@ -19,6 +19,7 @@ const Navigation = () => {
       });
   };
   useEffect(getProfile, []);
+//   really like your navigation link has a style that changes color when hover
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark navbar-color">
@@ -49,6 +50,7 @@ const Navigation = () => {
                   />
                 </Link>
               </li>
+//     For the login and signup link here, can also use a logic if the user is logged in, not showing up.
               <li className="nav-item">
                 <Link to="/login" className="nav-link">
                   Login

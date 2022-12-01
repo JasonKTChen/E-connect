@@ -1,5 +1,6 @@
 import "./Footer.css";
 const Footer = () => {
+//   This fotter is really beautiful and informative!
   return (
     <div className="footer">
       <div className="left-container">
