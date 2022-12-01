@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const Board = () => {
+  //A very good example of using useState, useEffect!
   const [user, setUser] = useState({});
 
   const getProfile = () => {
