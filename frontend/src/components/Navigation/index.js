@@ -19,6 +19,7 @@ const Navigation = () => {
       });
   };
   useEffect(getProfile, []);
+//   really like your navigation link has a style that changes color when hover
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark navbar-color">
