@@ -24,7 +24,9 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// Good to know that I don't have to move the frontend folder inside backend to use the static. I can learn this path.
 app.use(express.static(path.join(__dirname, "../frontend/build")));
+//Its awsome that you are using cookie! We will use cookie next time.
 app.use(
   session({
     secret: "keyboard cat",
