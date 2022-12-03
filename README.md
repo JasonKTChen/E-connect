@@ -38,6 +38,14 @@ npm install
 
 ```
 npm start
+/*
+  Hi, when I try to run npm start, it shows these:
+  npm ERR! Missing script: "start"
+npm ERR!
+npm ERR! Did you mean one of these?
+npm ERR!     npm star # Mark your favorite packages
+npm ERR!     npm stars # View packages marked as favorites
+*/
 ```
 
 For security purposes, we will not provide mongoDB connection URL, so you will need to either create a local database, or remote one.
