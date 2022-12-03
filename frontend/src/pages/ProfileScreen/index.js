@@ -124,6 +124,7 @@ const ProfileScreen = () => {
               <span> </span>
             </div>
           </div>
+          //seems there are a lot of input and states. In my opinion, maybe it is better to use a form
           <div className="col-md-5 border-right">
             <div className="p-3 py-5">
               <div className="d-flex justify-content-between align-items-center mb-3">
