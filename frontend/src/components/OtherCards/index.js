@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./OtherCards.css";
 import Card from "../Card";
 
+//
 const OtherCards = () => {
   const [cards, setCards] = useState();
   const [user, setUser] = useState({});
